@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'Screens/Welcome/welcome_screen.dart';
 import 'constants.dart';
+//import 'Screens/Permission_manager/permissioncode.dart';
+import 'package:firebase_core/firebase_core.dart';
+void main() async {
+  // Initializes Firebase
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 
-void main() {
+  // Runs the app
   runApp(const MyApp());
 }
+
+
 
 // Login / Sign up screen
 class MyApp extends StatelessWidget {
@@ -40,6 +48,7 @@ class MyApp extends StatelessWidget {
             ),
           )),
       home: WelcomeScreen(),
+
     );
   }
 }

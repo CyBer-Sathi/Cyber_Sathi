@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import '../../../components/already_have_an_account_acheck.dart';
 import '../../../constants.dart';
 import '../../Signup/signup_screen.dart';
+import '../../Login/Auth/auth_google.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
@@ -43,14 +45,23 @@ class LoginForm extends StatelessWidget {
             ),
           ),
           const SizedBox(height: defaultPadding),
-          Hero(
-            tag: "login_btn",
-            child: ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                "Login".toUpperCase(),
-              ),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text(
+              "Login".toUpperCase(),
             ),
+          ),
+          const SizedBox(height: defaultPadding),
+          SignInButton(
+            Buttons.Google,
+            onPressed: () async {
+              // Implement Google sign-in
+              final UserCredential? credential = await signInWithGoogle();
+              if (credential == null) {
+                // The user cancelled the sign-in flow
+                return;
+              }
+            },
           ),
           const SizedBox(height: defaultPadding),
           AlreadyHaveAnAccountCheck(
